@@ -31,7 +31,7 @@ public class Enemy extends PApplet{
 		
 		//returns the difference from player circle point to enemy circle point
 		float hyp = dist(p.getxPos(), p.getyPos(), e.getxPos(), e.getyPos());
-	//	System.out.println(hyp);
+		System.out.println(gameover);
 		if (hyp < radius) {
 			gameover = true;
 		}

@@ -21,6 +21,7 @@ public class GameControl extends PApplet{
 	
 	public void setup() {
 		
+		gamemode = 0;
 		player = new Player(100, 100, 50, 50, this);
 		enemy = new Enemy(random(1, 800), random(1, 500), 50, 50, this);
 		
@@ -32,12 +33,32 @@ public class GameControl extends PApplet{
 	}
 	
 	public void draw() {
-		background(0x52271E);
-		drawGame();
-		player.playerMovement();
-		enemy.collisionDetection(player, enemy);
-		enemy.npcMovement(player, enemy);
+		
+		
+		if(gamemode == 0) {
+			drawStartupScreen();
+			if(keyPressed) {
+				gamemode = 1;
+			}
+		}
+		
+		if(gamemode == 1) {
+			background(0x52271E);
+			drawGame();
+			player.playerMovement();
+			enemy.collisionDetection(player, enemy);
+			enemy.npcMovement(player, enemy);	
+		}
 	
+	}
+	
+	public void drawStartupScreen() {
+		background(0x000000);
+		fill(255, 255, 255);
+		textAlign(CENTER);
+		textSize(30);
+		text("Press any key to start playing", 400, 250);
+		
 	}
 	
 	
