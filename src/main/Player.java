@@ -6,7 +6,6 @@ public class Player extends PApplet{
 	
 	private float xPos, yPos, width, height;
 	private int color = 0x000000;
-	private int umrandung = 0xFFFFFF;
 	PApplet window;
 	
 
@@ -19,14 +18,16 @@ public class Player extends PApplet{
 	}
 	
 	public void drawPlayer() {
-		this.window.stroke(umrandung);
+		
 		this.window.fill(0x000000);
+		this.window.stroke(66, 135, 245);
+		this.window.strokeWeight(3);
 		this.window.ellipse(xPos, yPos, width, height);
 	}
 	
 	public void playerMovement() {
-		this.xPos = window.mouseX;
-		this.yPos = window.mouseY;
+		this.xPos = this.window.mouseX;
+		this.yPos = this.window.mouseY;
 	}
 
 	/**
