@@ -2,36 +2,37 @@ package main;
 
 import processing.core.PApplet;
 
-public class Enemy extends PApplet{
+public class Enemy extends Body{
 	
-	private float xPos, yPos, width, height, speed = (float) 0.01;
-	private int color = 0x000000;
-	PApplet window;
+	private float speed = (float) 0.01;
 
-	public Enemy(float xPos, float yPos, float width, float height, PApplet window) {
-		this.xPos = xPos;
-		this.yPos = yPos;
-		this.width = width;
-		this.height = height;
-		this.window = window;
+
+	public Enemy(float xPos, float yPos, float durchmesser, int color, PApplet window, float speed) {
+		super(xPos, yPos, durchmesser, color, window);
+		this.speed = speed;
+		
 	}
 	
-	public void drawEnemy() {
-		this.window.fill(0x000000);
+
+
+	@Override
+	public void drawBody() {
+		// TODO Auto-generated method stub
+		this.window.fill(color);
 		this.window.stroke(60, 45, 150);
 		this.window.strokeWeight(3);
-		this.window.ellipse(xPos, yPos, width, height);
+		this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);	
 	}
 	
 	public boolean collisionDetection(Player p, Enemy e) {
 		
 		boolean gameover = false;
 		
-		float radius = p.getWidth()/2 + e.getWidth()/2;
+		float radius = p.getDurchmesser()/2 + e.getDurchmesser()/2;
 		
 		//returns the difference from player circle point to enemy circle point
-		float hyp = dist(p.getxPos(), p.getyPos(), e.getxPos(), e.getyPos());
-		System.out.println(gameover);
+		float hyp = window.dist(p.getxPos(), p.getyPos(), e.getxPos(), e.getyPos());
+	//	System.out.println(gameover);
 		if (hyp < radius) {
 			gameover = true;
 		}
@@ -40,13 +41,12 @@ public class Enemy extends PApplet{
 		}
 		
 //		System.out.println(gameover);
-		return gameover;
-		
+		return gameover;	
 	}
 	
-	public void npcMovement(Player p, Enemy e) {
-		e.setxPos(lerp(e.getxPos(), p.getxPos(), e.getSpeed()));
-		e.setyPos(lerp(e.getyPos(), p.getyPos(), e.getSpeed()));
+	public void npcMovement(Enemy e, Player p) {
+		e.setxPos(window.lerp(e.getxPos(), p.getxPos(), e.getSpeed()));
+		e.setyPos(window.lerp(e.getyPos(), p.getyPos(), e.getSpeed()));
 	}
 
 	/**
@@ -78,27 +78,9 @@ public class Enemy extends PApplet{
 	}
 
 	/**
-	 * @return the width
-	 */
-	public float getWidth() {
-		return width;
-	}
-
-	/**
-	 * @return the height
-	 */
-	public float getHeight() {
-		return height;
-	}
-
-	/**
 	 * @return the speed
 	 */
 	public float getSpeed() {
 		return speed;
 	}
-
-	
-	
-
 }

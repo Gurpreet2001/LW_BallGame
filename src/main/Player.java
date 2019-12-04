@@ -2,27 +2,21 @@ package main;
 
 import processing.core.PApplet;
 
-public class Player extends PApplet{
-	
-	private float xPos, yPos, width, height;
-	private int color = 0x000000;
-	PApplet window;
+public class Player extends Body{
 	
 
-	public Player(float xPos, float yPos, float width, float height, PApplet window) {
-		this.xPos = xPos;
-		this.yPos = yPos;
-		this.width = width;
-		this.height = height;
-		this.window = window;
+	public Player(float xPos, float yPos, float durchmesser, int color, PApplet window) {
+		super(xPos, yPos, durchmesser, color, window);
+		
 	}
 	
-	public void drawPlayer() {
-		
-		this.window.fill(0x000000);
+	@Override
+	public void drawBody() {
+		// TODO Auto-generated method stub
+		this.window.fill(color);
 		this.window.stroke(66, 135, 245);
 		this.window.strokeWeight(3);
-		this.window.ellipse(xPos, yPos, width, height);
+		this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);
 	}
 	
 	public void playerMovement() {
@@ -43,21 +37,4 @@ public class Player extends PApplet{
 	public float getyPos() {
 		return yPos;
 	}
-
-	/**
-	 * @return the width
-	 */
-	public float getWidth() {
-		return width;
-	}
-
-	/**
-	 * @return the height
-	 */
-	public float getHeight() {
-		return height;
-	}
-	
-	
-
 }

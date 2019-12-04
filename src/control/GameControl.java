@@ -12,6 +12,7 @@ public class GameControl extends PApplet{
 	Player player;
 	Enemy enemy;
 	Random i;
+	float speed = (float) 0.01;
 
 
 	public static void main(String[] args) {
@@ -22,8 +23,8 @@ public class GameControl extends PApplet{
 	public void setup() {
 		
 		gamemode = 0;
-		player = new Player(100, 100, 50, 50, this);
-		enemy = new Enemy(random(1, 800), random(1, 500), 50, 50, this);
+		player = new Player(100, 100, 50, 0x000000, this);
+		enemy = new Enemy(50,50, 50, 0x000000, this, speed);
 		
 	}
 	
@@ -46,7 +47,7 @@ public class GameControl extends PApplet{
 			background(0x52271E);
 			drawGame();
 			player.playerMovement();
-			enemy.npcMovement(player, enemy);
+			enemy.npcMovement(enemy, player);
 			if(enemy.collisionDetection(player, enemy) == true) {
 				gamemode = 2;
 			}
@@ -75,8 +76,8 @@ public class GameControl extends PApplet{
 	
 	
 	public void drawGame() {
-		player.drawPlayer();
-		enemy.drawEnemy();
+		player.drawBody();
+		enemy.drawBody();
 		
 /*		System.out.println(player.getxPos());
 		System.out.println(player.getyPos());*/
