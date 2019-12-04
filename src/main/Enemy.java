@@ -24,10 +24,8 @@ public class Enemy extends Body{
 		this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);	
 	}
 	
-	public boolean collisionDetection(Player p, Enemy e) {
-		
-		boolean gameover = false;
-		
+	public boolean collisionDetectionEnemy(Player p, Enemy e) {	
+		boolean gameover = false;	
 		float radius = p.getDurchmesser()/2 + e.getDurchmesser()/2;
 		
 		//returns the difference from player circle point to enemy circle point
@@ -38,9 +36,8 @@ public class Enemy extends Body{
 		}
 		else {
 			gameover = false;
-		}
+		}	
 		
-//		System.out.println(gameover);
 		return gameover;	
 	}
 	

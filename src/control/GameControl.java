@@ -3,6 +3,7 @@ package control;
 import java.util.Random;
 
 import main.Enemy;
+import main.Gem;
 import main.Player;
 import processing.core.PApplet;
 
@@ -11,7 +12,7 @@ public class GameControl extends PApplet{
 	int gamemode;
 	Player player;
 	Enemy enemy;
-	Random i;
+	Gem star;
 	float speed = (float) 0.01;
 
 
@@ -24,7 +25,8 @@ public class GameControl extends PApplet{
 		
 		gamemode = 0;
 		player = new Player(100, 100, 50, 0x000000, this);
-		enemy = new Enemy(50,50, 50, 0x000000, this, speed);
+		enemy = new Enemy(random(1, 800), random(1, 500), 50, 0x000000, this, speed);
+		star = new Gem(random(1, 800), random(1, 500), 15, 0x000000, this);
 		
 	}
 	
@@ -47,8 +49,9 @@ public class GameControl extends PApplet{
 			background(0x52271E);
 			drawGame();
 			player.playerMovement();
-			enemy.npcMovement(enemy, player);
-			if(enemy.collisionDetection(player, enemy) == true) {
+	//		enemy.npcMovement(enemy, player);
+			star.respawnGem(star.collisionDetectionStar(star, player));
+			if(enemy.collisionDetectionEnemy(player, enemy) == true) {
 				gamemode = 2;
 			}
 		}
@@ -78,6 +81,7 @@ public class GameControl extends PApplet{
 	public void drawGame() {
 		player.drawBody();
 		enemy.drawBody();
+		star.drawBody();
 		
 /*		System.out.println(player.getxPos());
 		System.out.println(player.getyPos());*/
