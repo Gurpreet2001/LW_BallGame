@@ -1,8 +1,11 @@
 package main;
 
+import java.util.Random;
+
 import processing.core.PApplet;
 
 public class Gem extends Body {
+
 
 	public Gem(float xPos, float yPos, float durchmesser, int color, PApplet window) {
 		super(xPos, yPos, durchmesser, color, window);
@@ -35,13 +38,20 @@ public class Gem extends Body {
 		return hitStatus;	
 	}
 	
-	public void respawnGem(boolean hitStatus) {
+	public void respawnGem(boolean hitStatus, float random) {
 		if (hitStatus == true) {
+			this.setxPos(random);
+			this.setyPos(random);
 			System.out.println("hit");
 		}
-		else {
-			System.out.println("nothit");
-		}
+	}
+	
+	public static float randFloat(float min, float max) {
+
+	    Random rand = new Random();
+
+	    return rand.nextFloat() * (max - min) + min;
+
 	}
 
 }

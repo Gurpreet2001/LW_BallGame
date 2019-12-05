@@ -50,7 +50,7 @@ public class GameControl extends PApplet{
 			drawGame();
 			player.playerMovement();
 	//		enemy.npcMovement(enemy, player);
-			star.respawnGem(star.collisionDetectionStar(star, player));
+			star.respawnGem(star.collisionDetectionStar(star, player), star.randFloat(1, 500));
 			if(enemy.collisionDetectionEnemy(player, enemy) == true) {
 				gamemode = 2;
 			}
