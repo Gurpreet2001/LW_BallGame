@@ -41,9 +41,10 @@ public class Enemy extends Body{
 		return gameover;	
 	}
 	
-	public void npcMovement(Enemy e, Player p) {
-		e.setxPos(window.lerp(e.getxPos(), p.getxPos(), e.getSpeed()));
-		e.setyPos(window.lerp(e.getyPos(), p.getyPos(), e.getSpeed()));
+	public void npcMovement(Enemy e, Player p, float speed) {
+		e.setxPos(window.lerp(e.getxPos(), p.getxPos(), speed));
+		e.setyPos(window.lerp(e.getyPos(), p.getyPos(), speed));
+		System.out.println(speed);
 	}
 
 	/**

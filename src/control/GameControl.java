@@ -13,6 +13,7 @@ public class GameControl extends PApplet{
 	Player player;
 	Enemy enemy;
 	Gem star;
+	int score;
 	float speed = (float) 0.01;
 
 
@@ -23,6 +24,7 @@ public class GameControl extends PApplet{
 	
 	public void setup() {
 		
+		score = 0;
 		gamemode = 0;
 		player = new Player(100, 100, 50, 0x000000, this);
 		enemy = new Enemy(random(1, 800), random(1, 500), 50, 0x000000, this, speed);
@@ -36,8 +38,7 @@ public class GameControl extends PApplet{
 	}
 	
 	public void draw() {
-		
-		
+			
 		if(gamemode == 0) {
 			drawStartupScreen();
 			if(keyPressed) {
@@ -49,7 +50,14 @@ public class GameControl extends PApplet{
 			background(0x52271E);
 			drawGame();
 			player.playerMovement();
-	//		enemy.npcMovement(enemy, player);
+			enemy.npcMovement(enemy, player, speed);
+			if (star.collisionDetectionStar(star, player) == true) {
+				score += 1;
+				if(score%20 == 0) {
+					speed +=0.01;
+				}
+				System.out.println(speed);
+			}
 			star.respawnGem(star.collisionDetectionStar(star, player), star.randFloat(1, 500));
 			if(enemy.collisionDetectionEnemy(player, enemy) == true) {
 				gamemode = 2;
@@ -75,6 +83,11 @@ public class GameControl extends PApplet{
 		textAlign(CENTER);
 		textSize(30);
 		text("You lost.", 400, 250);
+		
+		fill(255, 255, 255);
+		textAlign(CENTER, BOTTOM);
+		textSize(30);
+		text("Score: " + score,  400, 290);
 	}
 	
 	
@@ -82,6 +95,12 @@ public class GameControl extends PApplet{
 		player.drawBody();
 		enemy.drawBody();
 		star.drawBody();
+		
+		
+		fill(255, 255, 255);
+		textAlign(CENTER, BOTTOM);
+		textSize(30);
+		text("Score: " + score, 70, 50);
 		
 /*		System.out.println(player.getxPos());
 		System.out.println(player.getyPos());*/
