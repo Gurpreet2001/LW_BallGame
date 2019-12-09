@@ -19,7 +19,7 @@ public class Gem extends Body {
 		this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);	  
 	}
 	
-	public boolean collisionDetectionStar(Gem g, Player p)  {	
+	public boolean collisionDetectionGem(Gem g, Player p)  {	
 		boolean hitStatus = false;	
 		float radius = p.getDurchmesser()/2 + g.getDurchmesser()/2;
 		
@@ -42,7 +42,7 @@ public class Gem extends Body {
 		if (hitStatus == true) {
 			this.setxPos(random);
 			this.setyPos(random);
-			System.out.println("hit");
+		//	System.out.println("hit");
 		}
 	}
 	

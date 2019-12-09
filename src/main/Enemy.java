@@ -30,7 +30,6 @@ public class Enemy extends Body{
 		
 		//returns the difference from player circle point to enemy circle point
 		float hyp = window.dist(p.getxPos(), p.getyPos(), e.getxPos(), e.getyPos());
-	//	System.out.println(gameover);
 		if (hyp < radius) {
 			gameover = true;
 		}
@@ -44,7 +43,6 @@ public class Enemy extends Body{
 	public void npcMovement(Enemy e, Player p, float speed) {
 		e.setxPos(window.lerp(e.getxPos(), p.getxPos(), speed));
 		e.setyPos(window.lerp(e.getyPos(), p.getyPos(), speed));
-		System.out.println(speed);
 	}
 
 	/**
@@ -81,4 +79,23 @@ public class Enemy extends Body{
 	public float getSpeed() {
 		return speed;
 	}
+	
+	public void moveUp() {
+		 this.yPos=window.max(0, yPos-speed); 
+	}
+
+	public void moveDown() {
+	 this.yPos=window.min(window.height, yPos+speed);
+	}
+
+	public void moveRight() {
+	 this.xPos=window.min(window.width, xPos+speed);
+	}
+
+	public void moveLeft() {
+	 this.xPos=window.max(0, xPos-speed);
+	}
+	
+	
+	
 }

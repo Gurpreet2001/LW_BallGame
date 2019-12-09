@@ -12,7 +12,7 @@ public class GameControl extends PApplet{
 	int gamemode;
 	Player player;
 	Enemy enemy;
-	Gem star;
+	Gem gem;
 	int score;
 	float speed = (float) 0.01;
 
@@ -28,12 +28,13 @@ public class GameControl extends PApplet{
 		gamemode = 0;
 		player = new Player(100, 100, 50, 0x000000, this);
 		enemy = new Enemy(random(1, 800), random(1, 500), 50, 0x000000, this, speed);
-		star = new Gem(random(1, 800), random(1, 500), 15, 0x000000, this);
+		gem = new Gem(random(1, 800), random(1, 500), 15, 0x000000, this);
 		
 	}
 	
 	public void settings() {
 		this.size(800, 500);
+		fullScreen(1);
 		
 	}
 	
@@ -51,17 +52,17 @@ public class GameControl extends PApplet{
 			drawGame();
 			player.playerMovement();
 			enemy.npcMovement(enemy, player, speed);
-			if (star.collisionDetectionStar(star, player) == true) {
+			if (gem.collisionDetectionGem(gem, player) == true) {
 				score += 1;
-				if(score%20 == 0) {
-					speed +=0.01;
+				if(score%10 == 0) {
+					speed +=3.0;
 				}
 				System.out.println(speed);
 			}
-			star.respawnGem(star.collisionDetectionStar(star, player), star.randFloat(1, 500));
+			gem.respawnGem(gem.collisionDetectionGem(gem, player), gem.randFloat(1, 500));
 			if(enemy.collisionDetectionEnemy(player, enemy) == true) {
 				gamemode = 2;
-			}
+			}  
 		}
 		
 		if(gamemode == 2) {
@@ -94,7 +95,7 @@ public class GameControl extends PApplet{
 	public void drawGame() {
 		player.drawBody();
 		enemy.drawBody();
-		star.drawBody();
+		gem.drawBody();
 		
 		
 		fill(255, 255, 255);
