@@ -53,9 +53,9 @@ public class GameControl extends PApplet{
 			player.playerMovement();
 			enemy.npcMovement(enemy, player, speed);
 			if (gem.collisionDetectionGem(gem, player) == true) {
-				score += 1;
+				score += 10;
 				if(score%10 == 0) {
-					speed +=3.0;
+					speed +=.01;
 				}
 				System.out.println(speed);
 			}
