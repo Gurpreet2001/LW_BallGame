@@ -2,20 +2,23 @@ package main;
 
 import control.GameControl;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public abstract class Body{
 
 	protected float xPos, yPos, durchmesser;
 	protected int color = 0x000000;
 	protected PApplet window;
+	PImage picture;
 	
 
-	public Body(float xPos, float yPos, float durchmesser, int color, PApplet window) {
+	public Body(float xPos, float yPos, float durchmesser, int color, PApplet window, PImage picture) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.durchmesser = durchmesser;
 		this.color = color;
 		this.window = window;
+		this.picture = picture;
 	}
 
 

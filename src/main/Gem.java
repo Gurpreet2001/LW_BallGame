@@ -3,20 +3,22 @@ package main;
 import java.util.Random;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Gem extends Body {
 
 
-	public Gem(float xPos, float yPos, float durchmesser, int color, PApplet window) {
-		super(xPos, yPos, durchmesser, color, window);
+	public Gem(float xPos, float yPos, float durchmesser, int color, PApplet window, PImage picture) {
+		super(xPos, yPos, durchmesser, color, window, picture);
 	}
 
 	@Override
 	public void drawBody() {	
-		this.window.fill(color);
-		this.window.stroke(66, 135, 245);
-		this.window.strokeWeight(3);
-		this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);	  
+		this.window.image(this.picture, this.xPos-25, this.yPos-25);
+	//	this.window.fill(color);
+	//	this.window.stroke(66, 135, 245);
+	//	this.window.strokeWeight(3);
+	//	this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);	  
 	}
 	
 	public boolean collisionDetectionGem(Gem g, Player p)  {	
@@ -46,7 +48,7 @@ public class Gem extends Body {
 		}
 	}
 	
-	public static float randFloat(float min, float max) {
+	public float randFloat(float min, float max) {
 
 	    Random rand = new Random();
 

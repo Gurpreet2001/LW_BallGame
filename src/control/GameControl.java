@@ -6,6 +6,7 @@ import main.Enemy;
 import main.Gem;
 import main.Player;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class GameControl extends PApplet{
 	
@@ -15,6 +16,9 @@ public class GameControl extends PApplet{
 	Gem gem;
 	int score;
 	float speed = (float) 0.01;
+	PImage enemyPicture;
+	PImage playerPicture;
+	PImage gemPicture;
 
 
 	public static void main(String[] args) {
@@ -26,15 +30,18 @@ public class GameControl extends PApplet{
 		
 		score = 0;
 		gamemode = 0;
-		player = new Player(100, 100, 50, 0x000000, this);
-		enemy = new Enemy(random(1, 800), random(1, 500), 50, 0x000000, this, speed);
-		gem = new Gem(random(1, 800), random(1, 500), 15, 0x000000, this);
+		enemyPicture = loadImage("../images/enemyPic.png");
+		playerPicture = loadImage("../images/playerPic.png");
+		gemPicture = loadImage("../images/gemPic.png");
+		player = new Player(100, 100, 50, 0x000000, this, playerPicture);
+		enemy = new Enemy(random(1, 800), random(1, 500), 50, 0x000000, this, enemyPicture, speed);
+		gem = new Gem(random(100, 700), random(100, 400), 15, 0x000000, this, gemPicture);
 		
 	}
 	
 	public void settings() {
 		this.size(800, 500);
-		fullScreen(1);
+	//	fullScreen(1);
 		
 	}
 	
@@ -59,7 +66,7 @@ public class GameControl extends PApplet{
 				}
 				System.out.println(speed);
 			}
-			gem.respawnGem(gem.collisionDetectionGem(gem, player), gem.randFloat(1, 500));
+			gem.respawnGem(gem.collisionDetectionGem(gem, player), gem.randFloat(100, 400));
 			if(enemy.collisionDetectionEnemy(player, enemy) == true) {
 				gamemode = 2;
 			}  

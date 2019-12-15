@@ -1,14 +1,15 @@
 package main;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Enemy extends Body{
 	
 	private float speed = (float) 0.01;
 
 
-	public Enemy(float xPos, float yPos, float durchmesser, int color, PApplet window, float speed) {
-		super(xPos, yPos, durchmesser, color, window);
+	public Enemy(float xPos, float yPos, float durchmesser, int color, PApplet window, PImage picture, float speed) {
+		super(xPos, yPos, durchmesser, color, window, picture);
 		this.speed = speed;
 		
 	}
@@ -18,10 +19,11 @@ public class Enemy extends Body{
 	@Override
 	public void drawBody() {
 		// TODO Auto-generated method stub
-		this.window.fill(color);
-		this.window.stroke(60, 45, 150);
-		this.window.strokeWeight(3);
-		this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);	
+		this.window.image(this.picture, this.xPos-25, this.yPos-25);
+	//	this.window.fill(color);
+	//	this.window.stroke(60, 45, 150);
+	//	this.window.strokeWeight(3);		
+	//	this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);	
 	}
 	
 	public boolean collisionDetectionEnemy(Player p, Enemy e) {	
