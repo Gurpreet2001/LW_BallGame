@@ -20,6 +20,12 @@ public class Player extends Body{
 //		this.window.strokeWeight(3);
 //		this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);
 	}
+
+	
+	public void playerMovementItem(Player p, Gem g, float speed) {
+		p.setxPos(window.lerp(p.getxPos(), g.getxPos(), speed));
+		p.setyPos(window.lerp(p.getyPos(), g.getyPos(), speed));
+	}
 	
 	public void playerMovement() {
 		this.xPos = this.window.mouseX;

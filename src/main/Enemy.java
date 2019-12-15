@@ -31,8 +31,8 @@ public class Enemy extends Body{
 		float radius = p.getDurchmesser()/2 + e.getDurchmesser()/2;
 		
 		//returns the difference from player circle point to enemy circle point
-		float hyp = window.dist(p.getxPos(), p.getyPos(), e.getxPos(), e.getyPos());
-		if (hyp < radius) {
+		float dif = window.dist(p.getxPos(), p.getyPos(), e.getxPos(), e.getyPos());
+		if (dif < radius) {
 			gameover = true;
 		}
 		else {

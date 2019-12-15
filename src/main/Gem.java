@@ -21,20 +21,18 @@ public class Gem extends Body {
 	//	this.window.ellipse(this.xPos, this.yPos, this.durchmesser, this.durchmesser);	  
 	}
 	
-	public boolean collisionDetectionGem(Gem g, Player p)  {	
+	public boolean collisionDetectionGem(Player p, Gem g)  {	
 		boolean hitStatus = false;	
 		float radius = p.getDurchmesser()/2 + g.getDurchmesser()/2;
 		
 		//returns the difference from player circle point to enemy circle point
-		float hyp = window.dist(p.getxPos(), p.getyPos(), g.getxPos(), g.getyPos());
-	//	System.out.println(hitStatus);
-		if (hyp < radius) {
+		float dif = window.dist(p.getxPos(), p.getyPos(), g.getxPos(), g.getyPos());
+
+		if (dif < radius) {
 			hitStatus = true;
-	//		System.out.println(hitStatus);
 		}
 		else {
 			hitStatus = false;
-		//	System.out.println(hitStatus);
 		}	
 		
 		return hitStatus;	
@@ -44,7 +42,7 @@ public class Gem extends Body {
 		if (hitStatus == true) {
 			this.setxPos(random);
 			this.setyPos(random);
-		//	System.out.println("hit");
+
 		}
 	}
 	
