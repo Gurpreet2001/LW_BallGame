@@ -1,10 +1,10 @@
-package main;
+package model;
 
-import control.GameControl;
+import main.GameControl;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public abstract class Body{
+public abstract class Body implements Drawable{
 
 	protected float xPos, yPos, durchmesser;
 	protected int color = 0x000000;
@@ -84,31 +84,4 @@ public abstract class Body{
 	public void setColor(int color) {
 		this.color = color;
 	}
-
-
-	/**
-	 * @return the window
-	 */
-	public PApplet getWindow() {
-		return window;
-	}
-
-
-	/**
-	 * @param window the window to set
-	 */
-	public void setWindow(PApplet window) {
-		this.window = window;
-	}
-	
-	public abstract void drawBody();
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

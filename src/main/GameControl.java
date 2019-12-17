@@ -1,11 +1,11 @@
-package control;
+package main;
 
 import java.util.Random;
 
-import main.Enemy;
-import main.Gem;
-import main.Item;
-import main.Player;
+import model.Enemy;
+import model.Gem;
+import model.Item;
+import model.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -18,7 +18,6 @@ public class GameControl extends PApplet{
 	Item item;
 	int score;
 	float speed = (float) 0.01;
-	boolean movementStatus = true;
 	PImage enemyPicture;
 	PImage playerPicture;
 	PImage gemPicture;
@@ -26,8 +25,7 @@ public class GameControl extends PApplet{
 
 
 	public static void main(String[] args) {
-		PApplet.main("control.GameControl");
-
+		PApplet.main("main.GameControl");
 	}
 	
 	public void setup() {
@@ -48,10 +46,10 @@ public class GameControl extends PApplet{
 	public void settings() {
 		this.size(800, 500);
 	//	fullScreen(1);
-		
 	}
 	
 	public void draw() {
+		System.out.println(speed);
 			
 		if(gamemode == 0) {
 			drawStartupScreen();
@@ -63,18 +61,21 @@ public class GameControl extends PApplet{
 		if(gamemode == 1) {
 			background(0x52271E);
 			drawGame();
-			if(movementStatus == true) {
+			enemy.npcMovement(enemy, player, speed);			
 				player.playerMovement();
 				
 				if(score%10==0 && score!=0) {
-					item.drawBody();			
+					item.drawBody();
+					if(item.collisionDetectionItem(player, item) == true) {
+						score += 5;
+			//			speed -=0.01;
+					}
 				}
-			}			
-			enemy.npcMovement(enemy, player, speed);
+					
 			if (gem.collisionDetectionGem(player, gem) == true) {
 				score += 5;
 				if(score%10 == 0) {
-					speed +=.01;
+					speed +=0.01;
 				}
 				System.out.println(speed);
 			}
@@ -82,7 +83,7 @@ public class GameControl extends PApplet{
 
 			if(enemy.collisionDetectionEnemy(player, enemy) == true) {
 				gamemode = 2;
-			}  
+			}    
 		}
 		
 		if(gamemode == 2) {
@@ -122,9 +123,6 @@ public class GameControl extends PApplet{
 		textAlign(CENTER, BOTTOM);
 		textSize(30);
 		text("Score: " + score, 70, 50);
-		
-/*		System.out.println(player.getxPos());
-		System.out.println(player.getyPos());*/
 		
 	}
 

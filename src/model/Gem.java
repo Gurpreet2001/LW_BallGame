@@ -1,4 +1,4 @@
-package main;
+package model;
 
 import java.util.Random;
 
@@ -12,7 +12,6 @@ public class Gem extends Body {
 		super(xPos, yPos, durchmesser, color, window, picture);
 	}
 
-	@Override
 	public void drawBody() {	
 		this.window.image(this.picture, this.xPos-25, this.yPos-25);
 	//	this.window.fill(color);

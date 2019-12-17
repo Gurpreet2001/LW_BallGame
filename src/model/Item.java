@@ -1,4 +1,4 @@
-package main;
+package model;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -11,11 +11,12 @@ public class Item extends Body{
 		super(xPos, yPos, durchmesser, color, window, picture);
 	}
 
-	@Override
+	
 	public void drawBody() {
 		// TODO Auto-generated method stub
 		this.window.image(this.picture, this.xPos-25, this.yPos-25);
 	}
+	
 	
 	public boolean collisionDetectionItem(Player p, Item i) {	
 		boolean hitStatus = false;	
@@ -32,9 +33,6 @@ public class Item extends Body{
 		
 		return hitStatus;	
 	}
-	
-	public void despawn() {
-		
-	}
+
 	
 }

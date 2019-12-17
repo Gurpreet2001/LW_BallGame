@@ -1,4 +1,4 @@
-package main;
+package model;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -16,7 +16,7 @@ public class Enemy extends Body{
 	
 
 
-	@Override
+	
 	public void drawBody() {
 		// TODO Auto-generated method stub
 		this.window.image(this.picture, this.xPos-25, this.yPos-25);
