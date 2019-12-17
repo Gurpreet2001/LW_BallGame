@@ -12,11 +12,10 @@ public abstract class Body implements Drawable{
 	PImage picture;
 	
 
-	public Body(float xPos, float yPos, float durchmesser, int color, PApplet window, PImage picture) {
+	public Body(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.durchmesser = durchmesser;
-		this.color = color;
 		this.window = window;
 		this.picture = picture;
 	}

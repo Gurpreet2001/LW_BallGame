@@ -17,6 +17,7 @@ public class GameControl extends PApplet{
 	Gem gem;
 	Item item;
 	int score;
+	int timer = 250;
 	float speed = (float) 0.01;
 	PImage enemyPicture;
 	PImage playerPicture;
@@ -36,10 +37,10 @@ public class GameControl extends PApplet{
 		playerPicture = loadImage("../images/playerPic.png");
 		gemPicture = loadImage("../images/gemPic.png");
 		itemPicture = loadImage("../images/itemPic.png");
-		item = new Item(random(100, 700), random(100, 400), 15, 0x000000, this, itemPicture);
-		player = new Player(100, 100, 50, 0x000000, this, playerPicture);
-		enemy = new Enemy(random(1, 800), random(1, 500), 50, 0x000000, this, enemyPicture, speed);
-		gem = new Gem(random(100, 700), random(100, 400), 15, 0x000000, this, gemPicture);
+		item = new Item(random(100, 700), random(100, 400), 15, this, itemPicture);
+		player = new Player(100, 100, 50, this, playerPicture);
+		enemy = new Enemy(random(1, 800), random(1, 500), 50, this, enemyPicture, speed);
+		gem = new Gem(random(100, 700), random(100, 400), 15, this, gemPicture);
 		
 	}
 	
@@ -62,24 +63,17 @@ public class GameControl extends PApplet{
 			background(0x52271E);
 			drawGame();
 			enemy.npcMovement(enemy, player, speed);			
-				player.playerMovement();
-				
-				if(score%10==0 && score!=0) {
-					item.drawBody();
-					if(item.collisionDetectionItem(player, item) == true) {
-						score += 5;
-			//			speed -=0.01;
-					}
-				}
-					
+			player.playerMovement();			
+			spawnItem();					
 			if (gem.collisionDetectionGem(player, gem) == true) {
-				score += 5;
+				score += 1;
 				if(score%10 == 0) {
-					speed +=0.01;
+					speed +=0.02;
 				}
 				System.out.println(speed);
 			}
-			gem.respawnGem(gem.collisionDetectionGem(player, gem), gem.randFloat(100, 400));		
+			
+			gem.respawnGem(gem.collisionDetectionGem(player, gem));		
 
 			if(enemy.collisionDetectionEnemy(player, enemy) == true) {
 				gamemode = 2;
@@ -124,6 +118,21 @@ public class GameControl extends PApplet{
 		textSize(30);
 		text("Score: " + score, 70, 50);
 		
+	}
+	
+	public void spawnItem() {
+		System.out.println(timer);
+		timer--;
+		if(timer < 0) {
+			item.drawBody();
+			if (item.collisionDetectionItem(player, item)) {
+				score += 5;
+				if(speed > 0.01 && speed  != 0.01) {
+					speed -= 0.01;
+				}	
+				timer = (int) random(250, 1000);
+			}								
+		}
 	}
 
 }

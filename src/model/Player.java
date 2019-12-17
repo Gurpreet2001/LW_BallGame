@@ -8,8 +8,8 @@ import processing.core.PImage;
 public class Player extends Body{
 	
 
-	public Player(float xPos, float yPos, float durchmesser, int color, PApplet window, PImage picture) {
-		super(xPos, yPos, durchmesser, color, window, picture);
+	public Player(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) {
+		super(xPos, yPos, durchmesser, window, picture);
 	}
 	
 	
@@ -27,17 +27,4 @@ public class Player extends Body{
 		this.yPos = this.window.mouseY;
 	}
 
-	/**
-	 * @return the xPos
-	 */
-	public float getxPos() {
-		return xPos;
-	}
-
-	/**
-	 * @return the yPos
-	 */
-	public float getyPos() {
-		return yPos;
-	}
 }

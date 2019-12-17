@@ -7,8 +7,8 @@ public class Item extends Body{
 	
 	
 
-	public Item(float xPos, float yPos, float durchmesser, int color, PApplet window, PImage picture) {
-		super(xPos, yPos, durchmesser, color, window, picture);
+	public Item(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) {
+		super(xPos, yPos, durchmesser, window, picture);
 	}
 
 	

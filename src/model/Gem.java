@@ -8,8 +8,8 @@ import processing.core.PImage;
 public class Gem extends Body {
 
 
-	public Gem(float xPos, float yPos, float durchmesser, int color, PApplet window, PImage picture) {
-		super(xPos, yPos, durchmesser, color, window, picture);
+	public Gem(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) {
+		super(xPos, yPos, durchmesser, window, picture);
 	}
 
 	public void drawBody() {	
@@ -22,35 +22,23 @@ public class Gem extends Body {
 	
 	public boolean collisionDetectionGem(Player p, Gem g)  {	
 		boolean hitStatus = false;	
-		float radius = p.getDurchmesser()/2 + g.getDurchmesser()/2;
-		
+		float radius = p.getDurchmesser()/2 + g.getDurchmesser()/2;	
 		//returns the difference from player circle point to enemy circle point
 		float dif = window.dist(p.getxPos(), p.getyPos(), g.getxPos(), g.getyPos());
-
 		if (dif < radius) {
 			hitStatus = true;
 		}
 		else {
 			hitStatus = false;
-		}	
-		
+		}			
 		return hitStatus;	
 	}
 	
-	public void respawnGem(boolean hitStatus, float random) {
+	public void respawnGem(boolean hitStatus) {
 		if (hitStatus == true) {
-			this.setxPos(random);
-			this.setyPos(random);
-
+			this.setxPos((int) window.random(100, 800));
+			this.setyPos((int) window.random(100, 500));
 		}
-	}
-	
-	public float randFloat(float min, float max) {
-
-	    Random rand = new Random();
-
-	    return rand.nextFloat() * (max - min) + min;
-
 	}
 
 }
