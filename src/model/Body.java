@@ -15,9 +15,9 @@ public abstract class Body implements Drawable{
 	public Body(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) throws Exception{
 		this.xPos = xPos;
 		this.yPos = yPos;
-		if(this.xPos <= 0) throw new Exception("Keine Negativzahlen oder 0");
-		if(this.yPos <= 0) throw new Exception("Keine Negativzahlen oder 0");
-		if(this.durchmesser <= 0) throw new Exception("Keine Negativzahlen oder 0");
+		if(this.xPos < 0) { throw new Exception("Keine Negativzahlen oder 0"); }
+		if(this.yPos < 0) { throw new Exception("Keine Negativzahlen oder 0"); }
+		if(this.durchmesser < 0) { throw new Exception("Keine Negativzahlen oder 0"); }
 		this.durchmesser = durchmesser;
 		this.window = window;
 		this.picture = picture;
