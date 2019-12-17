@@ -7,7 +7,7 @@ public class Item extends Body{
 	
 	
 
-	public Item(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) {
+	public Item(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) throws Exception {
 		super(xPos, yPos, durchmesser, window, picture);
 	}
 

@@ -8,7 +8,7 @@ public class Enemy extends Body{
 	private float speed = (float) 0.01;
 
 
-	public Enemy(float xPos, float yPos, float durchmesser, PApplet window, PImage picture, float speed) {
+	public Enemy(float xPos, float yPos, float durchmesser, PApplet window, PImage picture, float speed) throws Exception {
 		super(xPos, yPos, durchmesser, window, picture);
 		this.speed = speed;
 		

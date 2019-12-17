@@ -8,7 +8,7 @@ import processing.core.PImage;
 public class Player extends Body{
 	
 
-	public Player(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) {
+	public Player(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) throws Exception {
 		super(xPos, yPos, durchmesser, window, picture);
 	}
 	

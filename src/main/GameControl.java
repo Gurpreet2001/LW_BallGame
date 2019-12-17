@@ -19,6 +19,7 @@ public class GameControl extends PApplet{
 	int score;
 	int timer = 250;
 	float speed = (float) 0.01;
+	boolean movementStatus = true;
 	PImage enemyPicture;
 	PImage playerPicture;
 	PImage gemPicture;
@@ -37,10 +38,16 @@ public class GameControl extends PApplet{
 		playerPicture = loadImage("../images/playerPic.png");
 		gemPicture = loadImage("../images/gemPic.png");
 		itemPicture = loadImage("../images/itemPic.png");
-		item = new Item(random(100, 700), random(100, 400), 15, this, itemPicture);
-		player = new Player(100, 100, 50, this, playerPicture);
-		enemy = new Enemy(random(1, 800), random(1, 500), 50, this, enemyPicture, speed);
-		gem = new Gem(random(100, 700), random(100, 400), 15, this, gemPicture);
+
+		try {
+			enemy = new Enemy(random(1, 800), random(1, 500), 50, this, enemyPicture, speed);
+			item = new Item(random(100, 700), random(100, 400), 15, this, itemPicture);
+			player = new Player(100, 100, 50, this, playerPicture);
+			gem = new Gem(random(100, 700), random(100, 400), 15, this, gemPicture);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		
 	}
 	
@@ -62,7 +69,9 @@ public class GameControl extends PApplet{
 		if(gamemode == 1) {
 			background(0x52271E);
 			drawGame();
-			enemy.npcMovement(enemy, player, speed);			
+			if(movementStatus == true) {
+				enemy.npcMovement(enemy, player, speed);
+			}					
 			player.playerMovement();			
 			spawnItem();					
 			if (gem.collisionDetectionGem(player, gem) == true) {
@@ -82,6 +91,12 @@ public class GameControl extends PApplet{
 		
 		if(gamemode == 2) {
 			drawGameOverScreen();
+			if(keyPressed && key=='r') {
+				gamemode=1;
+				score = 0;
+				timer = 250;
+				speed = (float)0.01;			
+			}
 		}
 	}
 	
@@ -104,6 +119,11 @@ public class GameControl extends PApplet{
 		textAlign(CENTER, BOTTOM);
 		textSize(30);
 		text("Score: " + score,  400, 290);
+		
+		fill(255, 255, 255);
+		textAlign(CENTER, BOTTOM);
+		textSize(30);
+		text("Press R to restart ",  400, 330);
 	}
 	
 	
