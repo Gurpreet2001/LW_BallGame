@@ -4,6 +4,11 @@ import main.GameControl;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * This class is the generalisation for all the objects within the game
+ * Implements the Drawable Interface
+ * @author gurpreet
+ */
 public abstract class Body implements Drawable{
 
 	protected float xPos, yPos, durchmesser;
@@ -12,6 +17,14 @@ public abstract class Body implements Drawable{
 	PImage picture;
 	
 
+	/**
+	 * @param xPos = x coordinate of object
+	 * @param yPos = y coordinate of object
+	 * @param durchmesser = width/height of object
+	 * @param window = window, in which it'll be drawn
+	 * @param picture = picture that'll be loaded for this object
+	 * @throws Exception = If the value of x/y/durchmesser are under 0, it'll throw an exception
+	 */
 	public Body(float xPos, float yPos, float durchmesser, PApplet window, PImage picture) throws Exception{
 		this.xPos = xPos;
 		this.yPos = yPos;
@@ -23,14 +36,12 @@ public abstract class Body implements Drawable{
 		this.picture = picture;
 	}
 
-
 	/**
 	 * @return the xPos
 	 */
 	public float getxPos() {
 		return xPos;
 	}
-
 
 	/**
 	 * @param xPos the xPos to set
@@ -39,14 +50,12 @@ public abstract class Body implements Drawable{
 		this.xPos = xPos;
 	}
 
-
 	/**
 	 * @return the yPos
 	 */
 	public float getyPos() {
 		return yPos;
 	}
-
 
 	/**
 	 * @param yPos the yPos to set
@@ -55,14 +64,12 @@ public abstract class Body implements Drawable{
 		this.yPos = yPos;
 	}
 
-
 	/**
 	 * @return the durchmesser
 	 */
 	public float getDurchmesser() {
 		return durchmesser;
 	}
-
 
 	/**
 	 * @param durchmesser the durchmesser to set
@@ -71,14 +78,12 @@ public abstract class Body implements Drawable{
 		this.durchmesser = durchmesser;
 	}
 
-
 	/**
 	 * @return the color
 	 */
 	public int getColor() {
 		return color;
 	}
-
 
 	/**
 	 * @param color the color to set

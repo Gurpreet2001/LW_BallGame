@@ -1,11 +1,8 @@
-/**
- * 
- */
 package model;
 
 /**
- * @author 61111
- *
+ * Interface to implement the drawBody Function
+ * @author gurpreet
  */
 public interface Drawable {
 	

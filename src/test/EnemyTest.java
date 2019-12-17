@@ -9,10 +9,13 @@ import org.mockito.Mockito;
 import model.Enemy;
 import processing.core.PApplet;
 
+/**
+ * JUnit-Testclasse, to test the Enemy Class
+ * @author gurpreet
+ *
+ */
 public class EnemyTest {
 	
-	float yPos = 50, xPos = 10, durchmesser = 100;
-
 	/**
 	 * Enemy e = Enemy Objekt zum testen
 	 * Ich teste, ob das Objekt erstellt werden kann mit Negativwerte   
@@ -20,6 +23,7 @@ public class EnemyTest {
 	@Test
 	public void CtorTest() {
 		Enemy e;
+		float yPos = 50, xPos = 10, durchmesser = 100;
 		try {
 			e = new Enemy(-10, -50, -100, null, null, (float) 0.01);
 		} catch (Exception ex) {
@@ -29,12 +33,12 @@ public class EnemyTest {
 	
 	/**
 	 * Enemy e = Enemy Objekt zum testen
-	 * Ich teste, ob das Objekt die Werte korrekt übernimmt oder nicht
+	 * Ich teste, ob das Enemy-Objekt die Werte korrekt übernimmt oder nicht
 	 */
 	@Test
 	public void werteTest() {
 		Enemy e;
-	
+		float yPos = 50, xPos = 10, durchmesser = 100;
 		try {
 			e = new Enemy(xPos, yPos, durchmesser,null , null, (float) 0.01);
 			assertEquals(yPos, e.getyPos(), 0.0);
@@ -52,7 +56,7 @@ public class EnemyTest {
 	@Test
 	public void drawTest() {
 		Enemy e;
-	
+		float yPos = 50, xPos = 10, durchmesser = 100;
 		try {
 			e = new Enemy(xPos, yPos, durchmesser,null ,null , (float) 0.01);
 			e.drawBody();

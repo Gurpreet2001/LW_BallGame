@@ -9,29 +9,42 @@ import model.Player;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * This class is used to control all the objects within the game
+ * inherits von der PApplet Klasse
+ * @author gurpreet
+ */
 public class GameControl extends PApplet{
 	
+	/**
+	 * declare variables
+	 */
 	int gamemode;
 	Player player;
 	Enemy enemy;
 	Gem gem;
 	Item item;
 	int score;
+	boolean movementStatus = true;
 	int timer = 250;
 	float speed = (float) 0.01;
-	boolean movementStatus = true;
 	PImage enemyPicture;
 	PImage playerPicture;
 	PImage gemPicture;
 	PImage itemPicture;
 
-
+	/**
+	 * Used, to visualize the window
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		PApplet.main("main.GameControl");
 	}
 	
+	/**
+	 * Setup is used to initialize variables
+	 */
 	public void setup() {
-		
 		score = 0;
 		gamemode = 0;
 		enemyPicture = loadImage("../images/enemyPic.png");
@@ -51,14 +64,24 @@ public class GameControl extends PApplet{
 		
 	}
 	
+	/**
+	 * Settings are used, to define the height/width of the game Window
+	 */
 	public void settings() {
 		this.size(800, 500);
 	//	fullScreen(1);
 	}
 	
+	/**
+	 * Draw is used, to execute the code while the game Window is loaded
+ 	 * Gamemode 0 = Startupscreen, player needs to press button so the gamemode sets to 1
+	 * Gamemode 1 = Game itself starts, all collisionDetections are checked, item/gem spawns
+	 * Gamemode 1 = If enemy and player collide, the gamemode will change to 2
+	 * Gamemode 2 = Gameover, the player can restart the game by pressing r
+	 */
 	public void draw() {
 		System.out.println(speed);
-			
+		
 		if(gamemode == 0) {
 			drawStartupScreen();
 			if(keyPressed) {
@@ -100,6 +123,9 @@ public class GameControl extends PApplet{
 		}
 	}
 	
+	/**
+	 * Draws the Startupscreen Text into game Window
+	 */
 	public void drawStartupScreen() {
 		background(0x000000);
 		fill(255, 255, 255);
@@ -108,6 +134,9 @@ public class GameControl extends PApplet{
 		text("Press any key to start playing", 400, 250);
 	}
 	
+	/**
+	 * Draws the Gameover Text into game Window
+	 */
 	public void drawGameOverScreen() {
 		background(0x000000);
 		fill(255, 255, 255);
@@ -126,7 +155,9 @@ public class GameControl extends PApplet{
 		text("Press R to restart ",  400, 330);
 	}
 	
-	
+	/**
+	 * Draws the player, enemy, gem and score for the game
+	 */
 	public void drawGame() {
 		player.drawBody();
 		enemy.drawBody();
@@ -140,6 +171,10 @@ public class GameControl extends PApplet{
 		
 	}
 	
+	/**
+	 * timer is reduced every frame per second if the timer is under 0, the item spawns
+	 * if the item is collected by the player, the timer sets to a random number (250 to 1000)
+	 */
 	public void spawnItem() {
 		System.out.println(timer);
 		timer--;
